@@ -29,8 +29,15 @@ Auditoría OSINT – Naturgy
 
 #v(2cm)
 
-#image("imagenes/naturgy.png", width: 70%)
-] 
+#figure(
+  [
+    #image("imagenes/naturgy.png", width: 70%)
+  ],
+  
+  caption: "Logo de Naturgy",
+  
+)
+]
 
 #v(9cm)
 
@@ -69,6 +76,12 @@ Este trabajo es sobre un análisis de reconocimiento pasivo (OSINT) aplicado a l
 
 #outline()
 #pagebreak()
+
+= Índice de figuras
+#outline(target: figure)
+
+#pagebreak()
+
 
 = Introducción
 #v(0.40cm)
@@ -170,6 +183,8 @@ Ahora mediante las herramientas vistas en clase voy a encontrar información que
 
 WHOIS es un protocolo y base de datos pública utilizada para consultar la información de registro de nombres de dominio y direcciones IP, funciona como si fuera un "directorio" de internet.
 
+@liu2015learning WHOIS
+
 WHOIS me va a proporcionar una base del análisis cubriendo alguno de los requisitos como la infraestructura o los proveedores.
 
 He realizado una consulta en WHOIS sobre el dominio de naturgy.es para identificar información sobre su registro.
@@ -182,23 +197,40 @@ Entonces me tengo que ir a la web de España que es "dominios.es/es", desde ahí
 #v(0.2cm)
 
 #align(center)[
-  #image("imagenes/WHOIS.png", width: 70%)
+  #figure(
+  [
+    #image("imagenes/WHOIS.png", width: 70%)
+  ],
+  
+  caption: "Dominios.es",
+  
+)
 ]
-
-
 
 #pagebreak()
 #v(0.2cm)
 
 Desde ahí obtengo información muy interesante:
-
 #align(center)[
-  #image("imagenes/WHOIS2.png", width: 55%)
-  #v(0.2cm)
+#figure(
+  [
+    #image("imagenes/WHOIS2.png", width: 70%)
+  ],
+  
+  caption: "Datos Whois 1",
+  
+)
 
-  #image("imagenes/WHOIS3.png", width: 55%)
+#figure(
+  [
+    #image("imagenes/WHOIS3.png", width: 70%)
+  ],
+  
+  caption: "Datos Whois 2",
+  
+)
 ]
-@liu2015learning WHOIS
+
 
 Los datos más importantes son:
 
@@ -210,6 +242,7 @@ Primero su infraestructura y proovedores:
 - Fecha caducidad: 23-12-2026
 
 Infraestructura técnica: 
+#pagebreak()
 
 Servidores DNS:
 
@@ -242,9 +275,16 @@ RIPE es uno de los cinco registros regionales de internet (RIR) del mundo, se en
 #v(0.2cm)
 Para buscar información sobre la empresa que estamos analizando nos vamos a la RIPE Database:
 
+
 #align(center)[
-  #image("imagenes/RIPE.png", width: 60%)
+  #figure(
+  [
+    #image("imagenes/RIPE.png", width: 70%)
+  ],
   
+  caption: "RIPE Database Query",
+  
+)
 ]
 #v(0.2cm)
 
@@ -275,9 +315,16 @@ La principal fortaleza radica en indexar no solo las páginas web, sino banners 
 
 En este caso he utilizado Shodan para identificar servicios accesibles desde internet asociados a Naturgy:
 
+
 #align(center)[
-  #image("imagenes/shodan.jpg", width: 60%)
+  #figure(
+  [
+    #image("imagenes/shodan.jpg", width: 60%)
+  ],
   
+  caption: "Resultados 1 de Shodan",
+  
+)
 ]
 En estos primeros casos puse "naturgy.es", en el primero de los casos he identificado servidores web que sería "login.net.gasnaturalfenosa.com" y este está asociado a la IP 195.77.63.110
 
@@ -295,11 +342,17 @@ Segundo caso:
 
 
 #align(center)[
-  #image("imagenes/shodan2.jpg", width: 60%)
+  #figure(
+  [
+    #image("imagenes/shodan2.jpg", width: 70%)
+  ],
   
+  caption: "Resultados 2 de Shodan",
+  
+)
 ]
 
-#v(0.4cm)
+#v(0.5cm)
 Al poner Naturgy a secas, salían algunas empresas españolas, pero el problema principal es que no estoy seguro de que estén asociadas a Naturgy. Además, salía otras empresas por el mundo como en Brasil o México.
 
 #pagebreak()
@@ -320,19 +373,31 @@ Como se ve en la imagen he encontrado lo siguiente:
 
 
 #align(center)[
-  #image("imagenes/theHarvester.jpg", width: 60%)
+  #figure(
+  [
+    #image("imagenes/theHarvester.jpg", width: 70%)
+  ],
   
+  caption: "Resultados 1 de TheHarvester",
+  
+)
 ]
 Como se puede ver se han encontrado 165 hosts o subdominios, 59 IPs distintas y comentan como 59 URLs distintas.
 
 Ahora veremos poco a poco información no pondré todo porque me parece excesivo:
+#pagebreak()
 
 Primera imagen:
 #v(0.2cm)
-
 #align(center)[
-  #image("imagenes/theHarvester2.jpg", width: 80%)
+  #figure(
+  [
+    #image("imagenes/theHarvester2.jpg", width: 70%)
+  ],
   
+  caption: "Resultados 2 de TheHarvester",
+  
+)
 ]
 
 Por ejemplo en esta imagen no salía en el resumen que existían 12 ASNs. El ASN es un identificador numérico único asignado a un grupo de redes Ip gestionadas por una sola organización.
@@ -344,13 +409,19 @@ El que me llamó la atención fue está "https://info.naturgy.es/portals/engine/
 
 Esto no es recomendable, ya que los identifiacdores de sesión podrían estar expuestos en los logs.
 
-#pagebreak()
+
 
 Segunda imagen:
 
 #align(center)[
-  #image("imagenes/theHarvester3.jpg", width: 80%)
+  #figure(
+  [
+    #image("imagenes/theHarvester3.jpg", width: 70%)
+  ],
   
+  caption: "Resultados 3 de TheHarvester",
+  
+)
 ]
 
 En la siguiente imagen tenemos todas las IPs que están expuestas:
@@ -363,12 +434,18 @@ Algunas de ellas son:
 
 Esto me sugiere que ellos utilizan infraestructura cloud y redes de distribución de contenido (CDN), posiblemente mendiante proveedores como AWS, Akamai o Cloudflare para mejorar disponibilidad y rendimiento.
 #v(0.2cm)
-
+#pagebreak()
 Tercera imagen:
 
 #align(center)[
-  #image("imagenes/theHarvester4.jpg", width: 80%)
+  #figure(
+  [
+    #image("imagenes/theHarvester4.jpg", width: 70%)
+  ],
   
+  caption: "Resultados 4 de TheHarvester",
+  
+)
 ]
 
 En esta última imagen se puede mostrar alguno de los hosts o subdominios que presenta la empresa.
@@ -400,8 +477,14 @@ He utilizado tres declaraciones:
 Primera declaración "site:naturgy.es filetype:pdf":
 
 #align(center)[
-  #image("imagenes/GoogleDorking.jpg", width: 70%)
+  #figure(
+  [
+    #image("imagenes/GoogleDorking.jpg", width: 70%)
+  ],
   
+  caption: "Resultado Dorking 1",
+  
+)
 ]
 
 En este encuentra documentos públicos en este caso "pdf".
@@ -409,8 +492,14 @@ En este encuentra documentos públicos en este caso "pdf".
 Hay algunos en los que no lo encuentra, pero se quedó reflejado, como en el segundo documento:
 
 #align(center)[
-  #image("imagenes/GoogleDorking2.jpg", width: 70%)
+  #figure(
+  [
+    #image("imagenes/GoogleDorking2.jpg", width: 70%)
+  ],
   
+  caption: "Error de búsqueda de PDF",
+  
+)
 ]
 
 
@@ -419,8 +508,14 @@ Hay algunos en los que no lo encuentra, pero se quedó reflejado, como en el seg
 Segunda declaración "site:naturgy.es inurl:login":
 
 #align(center)[
-  #image("imagenes/GoogleDorking3.jpg", width: 70%)
+  #figure(
+  [
+    #image("imagenes/GoogleDorking3.jpg", width: 70%)
+  ],
   
+  caption: "Resultado Dorking 2",
+  
+)
 ]
 
 Esta declaración busca páginas de autenticación.
@@ -432,8 +527,14 @@ En este caso no encontré nada, por lo que me indica que la empresa protege adec
 Tercera declaración "site:naturgy.es filetype:xlsx OR filetype:docx":
 
 #align(center)[
-  #image("imagenes/GoogleDorking4.jpg", width: 70%)
+  #figure(
+  [
+    #image("imagenes/GoogleDorking4.jpg", width: 70%)
+  ],
   
+  caption: "Resultado Dorking 3",
+  
+)
 ]
 #v(0.2cm)
 
@@ -453,8 +554,14 @@ Es una base de datos indexada que recopila miles de consultas de búsqueda avanz
 En este caso lo he utilizado para buscar posibles vulnerabilidades o información sensible expuesta mediante los dorks conocidos:
 
 #align(center)[
-  #image("imagenes/GoogleHackingDataBase.jpg", width: 70%)
+  #figure(
+  [
+    #image("imagenes/GoogleHackingDataBase.jpg", width: 70%)
+  ],
   
+  caption: "Sin resultado de Google Hacking Database",
+  
+)
 ]
 
 Como se ve en la imagen no me salió información. La ausencia de resultados me indica que Naturgy no expone información sensible fácilmente indexable.
@@ -468,8 +575,14 @@ Es una biblioteca digital que funciona como una "máquina del tiempo", permite v
 He utilizado esta herramienta para analizar la evolución histórica del sitio web y estudiar la presencial digital de la compañía a lo largo del tiempo.
 
 #align(center)[
-  #image("imagenes/waybackmachine.jpg", width: 70%)
+  #figure(
+  [
+    #image("imagenes/waybackmachine.jpg", width: 70%)
+  ],
   
+  caption: "Tiempo de línea desde que nació Naturgy",
+  
+)
 ]
 
 #v(0.2cm)
@@ -484,12 +597,48 @@ Como se ve en la imagen los primeros inicios vienen del año 2018, esto coincide
 En este caso he investigado la presencia digital de Naturgy en diferentes redes sociales para analizar su visibilidad pública y su estrategia de comunicación online:
 
 #align(center)[
-  #image("imagenes/RedesSociales.jpg", width: 40%)
-  #image("imagenes/RedesSociales2.jpg", width: 40%)
-  #image("imagenes/RedesSociales3.jpg", width: 40%)
-  #image("imagenes/RedesSociales4.jpg", width: 40%)
+  #figure(
+  [
+    #image("imagenes/RedesSociales.jpg", width: 40%)
+  ],
   
+  caption: "Red social Facebook",
+  
+)
 ]
+#align(center)[
+  #figure(
+  [
+    #image("imagenes/RedesSociales2.jpg", width: 40%)
+  ],
+  
+  caption: "Red social Instagram",
+  
+)
+]
+
+#align(center)[
+  #figure(
+  [
+    #image("imagenes/RedesSociales3.jpg", width: 40%)
+  ],
+  
+  caption: "Red social X",
+  
+)
+]
+
+#align(center)[
+  #figure(
+  [
+    #image("imagenes/RedesSociales4.jpg", width: 40%)
+  ],
+  
+  caption: "Red social YouTube",
+  
+)
+]
+
 
 La presencia en estas plataformas indica una estrategia activa de comunicación digital donde la empresa publica información tipo noticias, campañas publicitarias y contenido relacionado con energía y sosteniblidad.
 
@@ -510,14 +659,29 @@ Entonces aquí es lo que he encontrado:
 #v(0.5cm)
 
 
+#align(center)[
+  #figure(
+  [
+    #image("imagenes/censys.jpg", width: 100%)
+  ],
+  
+  caption: "Resultado de censys 1",
+  
+)
+]
+#pagebreak()
 
 #align(center)[
-  #image("imagenes/censys.jpg", width: 100%)
-  #v(0.2cm)
-  #pagebreak()
-
-  #image("imagenes/censys2.jpg", width: 30%)
+  #figure(
+  [
+    #image("imagenes/censys2.jpg", width: 30%)
+  ],
+  
+  caption: "Resultado de censys 2",
+  
+)
 ]
+
 
 En la segunda foto he encontrado información que me resultó interesante.
 
@@ -549,6 +713,178 @@ Puerto 53
 
 Luego destaca tecnologías como Postfix, Dovecot estás dos son de correo y luego Nginx que es web y Plesk (es un panel administrativo)
 
+#pagebreak()
+= Resultados
+
+En este apartado se resumen los principales resultados obtenidos durante la fase de reconocimiento pasivo organizados por tipo de información obtenida.
+
+== Infraestructura y dominio
+
+#table(
+columns: 2,
+
+[Elemento], [Resultado],
+
+[Dominio principal], [naturgy.es],
+
+[Titular dominio], [Naturgy Energy Group S.A],
+
+[Proveedor registro], [EURODNS S.A],
+
+[Fecha registro], [23-12-2016],
+
+[Fecha expiración], [23-12-2026],
+
+[Servidores DNS], [Akamai CDN y servidores propios Naturgy],
+
+[Proveedor infraestructura], [Telefónica España],
+
+[Hosting detectado], [Acens]
+)
+
+== Infraestructura técnica detectada
+
+#table(
+columns: 2,
+
+[Elemento], [Resultado],
+
+[Host identificado], [82.194.91.81],
+
+[Hostname], [hs-1799.servidores-dedicados.es],
+
+[Dominio asociado], [asluzygas-naturgy.es],
+
+[Ubicación], [Madrid, España],
+
+[ASN detectado], [AS16371],
+
+[Proveedor red], [Acens]
+)
+
+== Servicios expuestos
+
+#table(
+columns: 2,
+
+[Servicio], [Puerto],
+
+[HTTP], [80],
+
+[HTTPS], [443],
+
+[HTTP alternativo], [8443],
+
+[SMTP], [25, 465],
+
+[POP3], [110, 995],
+
+[IMAP], [143, 993],
+
+[DNS], [53]
+)
+
+== Tecnologías identificadas
+
+#table(
+columns: 2,
+
+[Tecnología], [Función],
+
+[Nginx], [Servidor web],
+
+[Postfix], [Servidor correo],
+
+[Dovecot], [Servidor correo],
+
+[Plesk Panel], [Administración servidor],
+
+[TLS 1.2 / 1.3], [Seguridad comunicaciones]
+)
+#pagebreak()
+#v(0.5cm)
+
+== Activos descubiertos
+
+#table(
+columns: 2,
+
+[Elemento], [Cantidad],
+
+[Subdominios encontrados], [165],
+
+[Direcciones IP], [59],
+
+[URLs detectadas], [59],
+
+[ASN encontrados], [12]
+)
+
+== Ejemplos subdominios encontrados
+
+#table(
+columns: 2,
+
+[Subdominio], [Posible función],
+
+[areaprivada.naturgy.es], [Área clientes],
+
+[clientes.naturgy.es], [Gestión clientes],
+
+[mail.naturgy.es], [Correo corporativo],
+
+[solar.naturgy.es], [Servicios energía solar],
+
+[info.naturgy.es], [Información corporativa]
+)
+
+== Presencia en redes sociales
+
+#table(
+columns: 2,
+
+[Plataforma], [Presencia],
+
+[X (Twitter)], [Cuenta oficial],
+
+[Facebook], [Cuenta oficial],
+
+[Instagram], [Cuenta oficial],
+
+[YouTube], [Canal corporativo]
+)
+
+== Google Dorking
+
+#table(
+columns: 2,
+
+[Búsqueda], [Resultado],
+
+[site:naturgy.es filetype:pdf], [Documentos públicos encontrados],
+
+[site:naturgy.es inurl:login], [Sin resultados],
+
+[site:naturgy.es filetype:xlsx OR filetype:docx], [Sin resultados]
+)
+
+== Observaciones relevantes
+
+#table(
+columns: 2,
+
+[Observación], [Interpretación],
+
+[Uso CDN Akamai], [Protección y rendimiento],
+
+[Infraestructura en España], [Huella geográfica clara],
+
+[Gran número subdominios], [Amplia superficie digital],
+
+[Infraestructura cloud], [Uso proveedores externos],
+
+[Redes sociales activas], [Estrategia comunicación digital]
+)
 #pagebreak()
 
 
